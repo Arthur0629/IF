@@ -20,32 +20,15 @@ export class DashboardPage implements OnInit {
 
   ngOnInit(){
     
-    this.init()
-  }
-  
-  init(){
-    if(this.authService.userDetails()){
-      this.userEmail = this.authService.userDetails().email;
-    }else{
-      this.navCtrl.navigateBack('');
-    }
+
   }
 
-  logout(){
-    this.authService.logoutUser()
-    .then(res => {
-      console.log(res);
-      this.navCtrl.navigateBack('');
-    })
-    .catch(error => {
-      console.log(error);
-    })
+  onUpdateProfile(){
+    this.navCtrl.navigateForward('/profile')
   }
 
-  goto_home(){
-    this.router.navigateByUrl("home")
+  onCheckDetails(){
+    this.navCtrl.navigateForward('/details');
   }
-  goto_profile(){
-    this.router.navigateByUrl('profile');
-  }
+
 }
