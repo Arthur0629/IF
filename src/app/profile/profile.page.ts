@@ -11,7 +11,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
+  userInfo:any;
 
+ 
 
   constructor(
     private navCtrl: NavController,
@@ -23,7 +25,16 @@ export class ProfilePage implements OnInit {
 
 
   ngOnInit() {
+
+    var zhangsan:any = new Object();
+    zhangsan.name = "xiaohong";
+    zhangsan.dob = "01/01/1981";
+    zhangsan.gender = "Female";
+    zhangsan.swmming = true;
+    zhangsan.baskball = true;
     
+    
+    this.userInfo = zhangsan;
   }
   
   onClickUpdateProfile( _isUpdate ){
