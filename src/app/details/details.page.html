@@ -5,45 +5,111 @@
 </ion-header>
 
 <ion-content>
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <div>
+        Item
+      </div>
+    </ion-col>
+    <ion-col >
+      <div>
+        My Profile
+      </div>
+    </ion-col>
+    <ion-col>
+      <div>
+        Mate Profile
+      </div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <div>
+       Name
+      </div>
+    </ion-col>
+    <ion-col >
+      <div>
+        {{myProfile.name}}
+      </div>
+    </ion-col>
+    <ion-col>
+      <div>
+        {{mateProfile.name}}
+      </div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+      <ion-col>
+        <div>
+         DOB
+        </div>
+      </ion-col>
+      <ion-col >
+        <div>
+          {{myProfile.dob}}
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          {{mateProfile.dob}}
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col>
+          <div>
+           Gender
+          </div>
+        </ion-col>
+        <ion-col >
+          <div>
+            {{myProfile.gender}}
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+            {{mateProfile.gender}}
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+          <ion-col>
+            <div>
+             Like swmming
+            </div>
+          </ion-col>
+          <ion-col >
+            <div>
+              {{myProfile.swmming}}
+            </div>
+          </ion-col>
+          <ion-col>
+            <div>
+              {{mateProfile.swmming}}
+            </div>
+          </ion-col>
+        </ion-row><ion-row>
+            <ion-col>
+              <div>
+               Like Basktball
+              </div>
+            </ion-col>
+            <ion-col >
+              <div>
+                {{myProfile.baskball}}
+              </div>
+            </ion-col>
+            <ion-col>
+              <div>
+                {{mateProfile.baskball}}
+              </div>
+            </ion-col>
+          </ion-row>
 
-<table>
-  <thead>
-    <tr>
-      <th>Item</th>
-      <th>Me</th>
-      <th>Room Mate</th>
-    </tr>
-  </thead>  
+</ion-grid>
 
-  <tbody>
-<tr>
-  <td>Age</td>
-  <td></td>
-  <td></td>
-</tr>
-
-<tr>
-    <td>Gender</td>
-    <td></td>
-    <td></td>
-  </tr>
-  
-  <tr>
-      <td>LikeSwimming</td>
-      <td></td>
-      <td></td>
-    </tr>
-
-    <tr>
-        <td>Like BasketBall</td>
-        <td></td>
-        <td></td>
-      </tr>
-      
-    
-
-  </tbody>
-
-</table>
+<ion-button (click)="goDashboard()">Go Back dashboard</ion-button>
 
 </ion-content>

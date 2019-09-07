@@ -12,6 +12,8 @@ export class DashboardPage implements OnInit {
 
 
   arrayOfItems:any [] = [];
+  myProflie:any;
+  matchingResult:any;
 
 
 
@@ -23,12 +25,17 @@ export class DashboardPage implements OnInit {
   ) {}
 
   ngOnInit(){
+    
+
+
     var xiaohong:any = new Object();
     xiaohong.name = "xiaohong";
     xiaohong.dob = "01/01/1981";
     xiaohong.gender = "Female";
     xiaohong.swmming = true;
     xiaohong.baskball = true;
+
+    
 
     var xiaoming:any = new Object();
     xiaoming.name = "xiaoming";
@@ -51,11 +58,22 @@ export class DashboardPage implements OnInit {
     xiaowang.swmming = true;
     xiaowang.baskball = false;
 
+    var zhangsan: any = new Object();
+    zhangsan.name = " zhangsan ";
+    zhangsan.dob = " 01/01/1982";
+    zhangsan.gender = "male";
+    zhangsan.swmming = true;
+    zhangsan.baskball = true;
+
 
     this.arrayOfItems.push( xiaohong);
     this.arrayOfItems.push( xiaoming);
     this.arrayOfItems.push( xiaobai);
     this.arrayOfItems.push( xiaowang);
+
+    this.myProflie = zhangsan;
+
+    this.matchingCalculator();
 
   }
 
@@ -67,4 +85,36 @@ export class DashboardPage implements OnInit {
     this.navCtrl.navigateForward('/details');
   }
 
+  
+  matchingCalculator(){
+    
+    var myProflie =  this.myProflie;
+    var mateProfile;
+    
+    
+    for(var i: number = 0; i < this.arrayOfItems.length; i++){
+    
+        mateProfile = this.arrayOfItems[i];
+        var num = 0;
+        var totalHobby = 2;
+        var result;
+
+        if ( myProflie.swmming === mateProfile.swmming ){
+          num += 1;
+        }
+
+        if (myProflie.baskball === mateProfile.baskball){
+          num += 1;
+        }
+
+        result = ( num / totalHobby );
+        this.arrayOfItems[i].result = result;
+      
+
+    }
+
+  }
+
 }
+
+
