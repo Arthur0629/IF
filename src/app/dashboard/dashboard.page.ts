@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, ModalController } from '@ionic/angular';
+import { NavController, ModalController, LoadingController } from '@ionic/angular';
 import { AuthenticateService } from '../services/authentication.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { DatabaseService } from '../services/database.service';
+import { Info } from '../models/info';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -12,15 +16,22 @@ export class DashboardPage implements OnInit {
 
 
   userEmail: string;
+  infos: Info[];
   constructor(
     private navCtrl: NavController,
     public router: Router,
-    private authService: AuthenticateService
+    public loadingCtrl: LoadingController,
+    private authService: AuthenticateService,
+    private route: ActivatedRoute,
+    private dataservice : DatabaseService
   ) {}
 
   ngOnInit(){
     
-    this.init()
+    this.init();
+    this.dataservice.show_details().subscribe(infos =>{
+      this.infos = infos;
+    });
   }
   
   init(){
@@ -30,6 +41,7 @@ export class DashboardPage implements OnInit {
       this.navCtrl.navigateBack('');
     }
   }
+  
 
   logout(){
     this.authService.logoutUser()

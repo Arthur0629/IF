@@ -14,11 +14,21 @@
       </ion-row>
       <ion-row>
         <ion-col text-center>
-          Your Registered EmailID : {{userEmail}}<br>
-          {{uid}}<br>
+          Your Registered EmailID : {{userEmail}}
         </ion-col>
       </ion-row>
-    </ion-grid>  
+    </ion-grid>
+    <div *ngIf="infos?.length > 0 else noinfos">
+      <h1>Your information</h1>
+      <ul *ngFor = "let info of infos">
+        <li>Name: {{info.name}}</li>
+        <li>Age: {{info.age}}</li>
+
+      </ul>
+    </div>
+    <ng-template #noinfos>
+      <h5>not thing</h5>
+    </ng-template>  
     <ion-button (click)="goto_profile()">Create Profile</ion-button>
     <ion-button (click)="goto_home()">Profile</ion-button>
     <ion-button (click)="logout()">Logout</ion-button>
