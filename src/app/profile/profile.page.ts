@@ -38,9 +38,16 @@ export class ProfilePage implements OnInit {
   
   onClickUpdateProfile( _isUpdate ){
 
+    
     var person = this.userInfo;
-
+    
+   
     if( _isUpdate ){ // talk to server to update
+    
+      //把数据给firebase
+      //dataService.pushData(userInfo)  
+
+      alert("成功");
 
     }
 

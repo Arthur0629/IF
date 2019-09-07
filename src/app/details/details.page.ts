@@ -14,7 +14,7 @@ export class DetailsPage implements OnInit {
   constructor(private navCtrl: NavController,) { }
 
   ngOnInit() {
-
+    // 把localstorage 中的内容读取，与myProfile 比较
     var zhangsan: any = new Object();
     zhangsan.name = " zhangsan ";
     zhangsan.dob = " 01/01/1982";

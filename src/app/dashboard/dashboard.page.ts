@@ -81,8 +81,10 @@ export class DashboardPage implements OnInit {
     this.navCtrl.navigateForward('/profile')
   }
 
-  onCheckDetails(){
+  onCheckDetails(_item){
+    //把item放到local storage
     this.navCtrl.navigateForward('/details');
+
   }
 
   
