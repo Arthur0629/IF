@@ -5,7 +5,22 @@
 </ion-header>
 
 <ion-content padding>
-  <h1>{{name}}</h1>
+  <div *ngIf="infos?.length > 0 else noinfos">
+    <h1>Your information</h1>
+    <ul *ngFor = "let info of infos">
+      <div class="row">
+          <li>Name: {{info.name}}</li>
+          <li>Age: {{info.age}}</li>
+      </div>
+    </ul>
+  </div>
+  
+  
+  
+  <ng-template #noinfos>
+    <h5>Waiting...</h5>
+  </ng-template>
+  <ion-button (click)="edit()">Edit</ion-button>  
   <ion-button (click)="BacktoDash()">Back</ion-button>
   <ion-button (click)="logout()">Logout</ion-button>
 </ion-content>

@@ -8,11 +8,20 @@ export class AuthenticateService {
  
   registerUser(value){
    return new Promise<any>((resolve, reject) => {
-     firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
-     .then(
+      firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
+      .then(
        res => resolve(res),
        err => reject(err))
    })
+  }
+  emailVerification(value){
+    return new Promise<any>((resolve, reject) => {
+      let user = firebase.auth().currentUser;
+      user.sendEmailVerification(value.email)
+      .then(
+        res => resolve(res),
+        err => reject(err))
+    })
   }
  
   loginUser(value){

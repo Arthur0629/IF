@@ -56,7 +56,7 @@ export class ProfilePage implements OnInit {
     }
     this.dataService.get_user_details(data)
      .then(res => {
-      this.router.navigateByUrl('home');
+      this.router.navigateByUrl('dashboard');
      })
   }
   logout(){

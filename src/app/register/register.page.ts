@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AuthenticateService } from '../services/authentication.service';
 import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -17,8 +18,8 @@ export class RegisterPage implements OnInit {
 
   validation_messages = {
    'email': [
-     { type: 'required', message: 'Email is required.' },
-     { type: 'pattern', message: 'Enter a valid email.' }
+     { type: 'required', message: 'Student Email is required.' },
+     { type: 'pattern', message: 'Enter a valid student email.' }
    ],
    'password': [
      { type: 'required', message: 'Password is required.' },
@@ -29,6 +30,7 @@ export class RegisterPage implements OnInit {
   constructor(
     private navCtrl: NavController,
     private authService: AuthenticateService,
+    public router: Router,
     private formBuilder: FormBuilder
   ) {}
 
@@ -36,7 +38,7 @@ export class RegisterPage implements OnInit {
     this.validations_form = this.formBuilder.group({
       email: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.edu+.[a-zA-Z0-9-]+$')
       ])),
       password: new FormControl('', Validators.compose([
         Validators.minLength(5),
@@ -50,13 +52,14 @@ export class RegisterPage implements OnInit {
      .then(res => {
        console.log(res);
        this.errorMessage = "";
-       this.navCtrl.navigateBack('');
+       this.router.navigateByUrl('profile');
      }, err => {
        console.log(err);
        this.errorMessage = err.message;
        this.successMessage = "";
      })
   }
+
 
   goLoginPage(){
     this.navCtrl.navigateBack('');

@@ -1,20 +1,18 @@
-import { Component } from '@angular/core';
-import { AuthenticateService } from '../services/authentication.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { NavController, LoadingController} from '@ionic/angular';
-import { Info } from '../models/info';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DatabaseService } from '../services/database.service';
+import { AuthenticateService } from '../services/authentication.service';
+import { LoadingController, NavController } from '@ionic/angular';
+import { Info } from '../models/info';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-update-profile',
+  templateUrl: './update-profile.page.html',
+  styleUrls: ['./update-profile.page.scss'],
 })
-export class HomePage {
+export class UpdateProfilePage implements OnInit {
   infos: Info[];
 
-
-  
   constructor(
     private navCtrl: NavController,
     public router: Router,
@@ -24,20 +22,20 @@ export class HomePage {
     private dataservice : DatabaseService
   ) {}
 
-
   ngOnInit() {
     this.dataservice.show_details().subscribe(infos =>{
       this.infos = infos;
     });
   }
-  
-  BacktoDash(){
-    this.router.navigateByUrl('dashboard');
-  }
-  edit(){
-    this.router.navigateByUrl('update-profile');
-  }
 
+
+  update(info:Info){
+    this.dataservice.update_details(info);
+    
+  }
+  BacktoHome(){
+    this.router.navigateByUrl('home');
+  }
   logout(){
     this.authService.logoutUser()
     .then(res => {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase/app';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import {Info} from '../models/info';
 import { Observable } from 'rxjs';
@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 export class DatabaseService {
   Profile_detail: AngularFirestoreCollection<Info>;
   Profile_details: Observable<Info[]>;
-  
+  profileDoc: AngularFirestoreDocument<Info>;
  
   constructor(
     private firestore: AngularFirestore,
@@ -41,4 +41,14 @@ export class DatabaseService {
     this.Profile_details =  this.firestore.collection('user').doc(currentUser.uid).collection('details').valueChanges();
     return this.Profile_details; 
   }
+
+  update_details(info:Info){
+    
+    let currentUser = firebase.auth().currentUser;
+    this.profileDoc = this.firestore.doc('user/'+ currentUser.uid + '/details/');
+    this.profileDoc.update(info);
+    
+  }
+  
+  
 }

@@ -29,9 +29,7 @@ export class DashboardPage implements OnInit {
   ngOnInit(){
     
     this.init();
-    this.dataservice.show_details().subscribe(infos =>{
-      this.infos = infos;
-    });
+    
   }
   
   init(){
@@ -57,7 +55,5 @@ export class DashboardPage implements OnInit {
   goto_home(){
     this.router.navigateByUrl("home")
   }
-  goto_profile(){
-    this.router.navigateByUrl('profile');
-  }
+
 }
